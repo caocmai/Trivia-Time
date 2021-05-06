@@ -20,18 +20,36 @@ struct QuestionView: View {
     
     var body: some View {
         VStack {
-            //        Text("Question View Testing")
             if questions.isEmpty {
                 Text("Loading Questions....")
             } else {
 
 //                Spacer()
-                ForEach(questions, id: \.id) { item in
-                    Text(item.question)
+                Text(questions.first!.question)
+                let choices = questions.first!.allChoices()
+                ForEach(choices, id: \.self) { choice in
+                    Button {
+//                        print(choice, "|",  questions.first!.correctAnswer)
+                        let isCorrect = questions.first!.checkAnswer(chosenAnswer: choice)
+                        
+                        if isCorrect {
+                            print("You got it right!")
+                        } else {
+                            print("You got it wrong, sorry")
+                        }
+                        
+                    } label: {
+                        Text(choice)
+                    }
+
+                    
                 }
+//                ForEach(questions, id: \.id) { item in
+//                    Text(item.question)
+//                }
                 
             }
-            
+            Text("---------------")
             Button {
                 nextRequest()
             } label: {
@@ -50,7 +68,6 @@ private extension QuestionView {
     func firstRequest() {
         if firstTime {
             self.questionController.fetchResult()
-            
         }
         firstTime = false
     }

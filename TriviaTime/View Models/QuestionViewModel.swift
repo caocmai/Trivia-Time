@@ -15,6 +15,7 @@ struct QuestionViewModel: Identifiable, Codable {
     var question: String
     var correctAnswer: String
     var incorrectAnswers: [String]
+//    var choices: [String]
     
     init(questionResponse: QuestionResponse) {
         self.id = questionResponse.question
@@ -24,15 +25,17 @@ struct QuestionViewModel: Identifiable, Codable {
         self.incorrectAnswers = questionResponse.incorrectAnswers
         self.question = ""
         self.question = self.replaceSpecialChars(sentence: questionResponse.question)
+//        self.choices = self.incorrectAnswers.append("jkd")
     }
     
     func checkAnswer(chosenAnswer: String) -> Bool {
-        if chosenAnswer == correctAnswer {
+        if chosenAnswer.lowercased() == correctAnswer.lowercased() {
             return true
         }
         return false
     }
     
+//    https://stackoverflow.com/questions/25607247/how-do-i-decode-html-entities-in-swift
     func replaceSpecialChars(sentence: String) -> String {
         guard let data = sentence.data(using: .utf8) else {
             return sentence
@@ -47,5 +50,17 @@ struct QuestionViewModel: Identifiable, Codable {
             return sentence
         }
         return attributedString.string
+    }
+    
+    
+
+    func allChoices() -> [String] {
+        var choices = [String]()
+        choices = self.incorrectAnswers
+        choices.append(self.correctAnswer)
+//        for index in choices.indices {
+//            choices[index] = replaceSpecialChars(sentence: choices[index])
+//        }
+        return choices
     }
 }
