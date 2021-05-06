@@ -24,4 +24,13 @@ struct EndPoint {
     components.queryItems = queryItems
     return components.url
   }
+    
+}
+
+
+extension EndPoint {
+    
+    static func questions(queryItems : [URLQueryItem]) -> Self {
+        EndPoint(path: Keys.questionPath, queryItems: queryItems)
+    }
 }

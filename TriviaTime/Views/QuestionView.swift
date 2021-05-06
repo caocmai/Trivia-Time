@@ -15,15 +15,19 @@ struct QuestionView: View {
     
     var body: some View {
         Text("Question View")
-            .padding()
+            .onAppear { requestWebData()}
+    
     }
+
 }
 
 
 private extension QuestionView {
   //MARK: - Methods
     func requestWebData() {
-//    self.petDataController.requestPets(around: postcode.isEmpty ? nil : postcode)
-//        self.questionController
+
+//        self.questionController.
+        self.questionController.fetchResult()
+        
   }
 }

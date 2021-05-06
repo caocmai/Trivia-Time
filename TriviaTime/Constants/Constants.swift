@@ -9,7 +9,8 @@ import Foundation
 
 enum Keys {
     
-    static var baseURLPath = "api.com"
+    static var baseURLPath = "opentdb.com"
+    static var questionPath = "/api.php"
     
 }
 
