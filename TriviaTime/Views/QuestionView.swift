@@ -23,9 +23,19 @@ struct QuestionView: View {
             //        Text("Question View Testing")
             if questions.isEmpty {
                 Text("Loading Questions....")
+            } else {
+
+//                Spacer()
+                ForEach(questions, id: \.id) { item in
+                    Text(item.question)
+                }
+                
             }
-            ForEach(questions, id: \.id) { item in
-                Text("\(item.correctAnswer)")
+            
+            Button {
+                nextRequest()
+            } label: {
+                Text("Next Question")
             }
         }
         .onAppear { firstRequest()}
@@ -49,3 +59,5 @@ private extension QuestionView {
         self.questionController.fetchResult()
     }
 }
+
+

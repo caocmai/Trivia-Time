@@ -22,7 +22,8 @@ struct QuestionViewModel: Identifiable, Codable {
         self.difficulty = questionResponse.difficulty
         self.correctAnswer = questionResponse.correctAnswer
         self.incorrectAnswers = questionResponse.incorrectAnswers
-        self.question = questionResponse.question
+        self.question = ""
+        self.question = self.replaceSpecialChars(sentence: questionResponse.question)
     }
     
     func checkAnswer(chosenAnswer: String) -> Bool {
@@ -30,5 +31,21 @@ struct QuestionViewModel: Identifiable, Codable {
             return true
         }
         return false
+    }
+    
+    func replaceSpecialChars(sentence: String) -> String {
+        guard let data = sentence.data(using: .utf8) else {
+            return sentence
+        }
+
+        let options: [NSAttributedString.DocumentReadingOptionKey: Any] = [
+            .documentType: NSAttributedString.DocumentType.html,
+            .characterEncoding: String.Encoding.utf8.rawValue
+        ]
+
+        guard let attributedString = try? NSAttributedString(data: data, options: options, documentAttributes: nil) else {
+            return sentence
+        }
+        return attributedString.string
     }
 }
