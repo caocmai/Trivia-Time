@@ -28,6 +28,7 @@ private extension QuestionView {
 
 //        self.questionController.
         self.questionController.fetchResult()
+
         
   }
 }
