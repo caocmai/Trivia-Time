@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C1F6256264393C500130F2F /* QuestionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F6255264393C500130F2F /* QuestionController.swift */; };
+		2C1F625A264394FF00130F2F /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F6259264394FF00130F2F /* APIManager.swift */; };
+		2C1F625E2643955200130F2F /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F625D2643955200130F2F /* EndPoint.swift */; };
+		2C1F62622643959200130F2F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F62612643959200130F2F /* Constants.swift */; };
 		2C2A4A7B264265380024192C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2A4A7A264265380024192C /* AppDelegate.swift */; };
 		2C2A4A7D264265380024192C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2A4A7C264265380024192C /* SceneDelegate.swift */; };
 		2C2A4A7F264265380024192C /* TabbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2A4A7E264265380024192C /* TabbarView.swift */; };
@@ -18,6 +22,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C1F6255264393C500130F2F /* QuestionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionController.swift; sourceTree = "<group>"; };
+		2C1F6259264394FF00130F2F /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		2C1F625D2643955200130F2F /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
+		2C1F62612643959200130F2F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2C2A4A77264265380024192C /* TriviaTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TriviaTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C2A4A7A264265380024192C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C2A4A7C264265380024192C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +49,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C1F6254264393B300130F2F /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				2C1F6255264393C500130F2F /* QuestionController.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		2C1F6258264394D500130F2F /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				2C1F6259264394FF00130F2F /* APIManager.swift */,
+				2C1F625D2643955200130F2F /* EndPoint.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		2C1F62602643957500130F2F /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				2C1F62612643959200130F2F /* Constants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		2C2A4A6E264265380024192C = {
 			isa = PBXGroup;
 			children = (
@@ -63,6 +96,9 @@
 				2C2A4A7A264265380024192C /* AppDelegate.swift */,
 				2C2A4A7C264265380024192C /* SceneDelegate.swift */,
 				2C2A4A7E264265380024192C /* TabbarView.swift */,
+				2C1F62602643957500130F2F /* Constants */,
+				2C1F6258264394D500130F2F /* Networking */,
+				2C1F6254264393B300130F2F /* View Models */,
 				2C2A4A8F2642674A0024192C /* Views */,
 				2C2A4A80264265390024192C /* Assets.xcassets */,
 				2C2A4A85264265390024192C /* LaunchScreen.storyboard */,
@@ -161,9 +197,13 @@
 			files = (
 				2C2A4A91264267750024192C /* QuestionView.swift in Sources */,
 				2C2A4A7B264265380024192C /* AppDelegate.swift in Sources */,
+				2C1F625E2643955200130F2F /* EndPoint.swift in Sources */,
 				2C2A4A7D264265380024192C /* SceneDelegate.swift in Sources */,
 				2C2A4A7F264265380024192C /* TabbarView.swift in Sources */,
 				2C2A4A952642677C0024192C /* ScoresView.swift in Sources */,
+				2C1F6256264393C500130F2F /* QuestionController.swift in Sources */,
+				2C1F625A264394FF00130F2F /* APIManager.swift in Sources */,
+				2C1F62622643959200130F2F /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
