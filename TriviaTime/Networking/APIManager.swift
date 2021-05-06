@@ -19,18 +19,13 @@ protocol NetworkService {
 
 class APIService: NetworkService {
     
-    
     func fetch<T: Decodable>( at endPoint: EndPoint, completion: @escaping (Result<T, Error>) -> Void) {
-        //      print(token)
-        //      if isTokenValid() {
-        //        let token = "test token"
         guard let url = endPoint.url else {
             print("❌ \(#function) - Error: Cannot create URL using - \(endPoint.urlString)")
             return
         }
         let method = "GET"
         var request = URLRequest(url: url)
-        //        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         request.httpMethod = method
         request.cachePolicy = .reloadRevalidatingCacheData
         
@@ -54,15 +49,7 @@ class APIService: NetworkService {
         task.resume()
     }
     
-    
-    //      else {
-    //        refreshAccessToken { [weak self] in
-    //          self?.fetch(at: endPoint, completion: completion)
-    //        }
-    //      }
-    //    }
-    
-    
+
     func fetchTEST(at endPoint: EndPoint) {
 
             guard let url = endPoint.url else {
@@ -71,7 +58,6 @@ class APIService: NetworkService {
             }
             let method = "GET"
             var request = URLRequest(url: url)
-//            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
             request.httpMethod = method
             request.cachePolicy = .reloadRevalidatingCacheData
             
@@ -93,5 +79,4 @@ class APIService: NetworkService {
             task.resume()
         }
 
-    
 }

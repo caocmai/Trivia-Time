@@ -12,6 +12,7 @@
 		2C1F625E2643955200130F2F /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F625D2643955200130F2F /* EndPoint.swift */; };
 		2C1F62622643959200130F2F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F62612643959200130F2F /* Constants.swift */; };
 		2C1F626726439E2200130F2F /* QuestionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F626626439E2200130F2F /* QuestionResponse.swift */; };
+		2C1F626B2643A2B300130F2F /* QuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F626A2643A2B300130F2F /* QuestionViewModel.swift */; };
 		2C2A4A7B264265380024192C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2A4A7A264265380024192C /* AppDelegate.swift */; };
 		2C2A4A7D264265380024192C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2A4A7C264265380024192C /* SceneDelegate.swift */; };
 		2C2A4A7F264265380024192C /* TabbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2A4A7E264265380024192C /* TabbarView.swift */; };
@@ -28,6 +29,7 @@
 		2C1F625D2643955200130F2F /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		2C1F62612643959200130F2F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2C1F626626439E2200130F2F /* QuestionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionResponse.swift; sourceTree = "<group>"; };
+		2C1F626A2643A2B300130F2F /* QuestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewModel.swift; sourceTree = "<group>"; };
 		2C2A4A77264265380024192C /* TriviaTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TriviaTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C2A4A7A264265380024192C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C2A4A7C264265380024192C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				2C1F6255264393C500130F2F /* QuestionController.swift */,
+				2C1F626A2643A2B300130F2F /* QuestionViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -216,6 +219,7 @@
 				2C1F6256264393C500130F2F /* QuestionController.swift in Sources */,
 				2C1F625A264394FF00130F2F /* APIManager.swift in Sources */,
 				2C1F62622643959200130F2F /* Constants.swift in Sources */,
+				2C1F626B2643A2B300130F2F /* QuestionViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
