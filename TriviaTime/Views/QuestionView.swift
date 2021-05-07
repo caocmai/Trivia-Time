@@ -12,6 +12,10 @@ struct QuestionView: View {
     
     @EnvironmentObject var questionController: QuestionController
     @State private var firstTime = true
+    @State private var questionIndex = 0
+    @State private var showingScore = false
+    @State private var gotRight = false
+    
     
     private var questions: [QuestionViewModel] {
         return questionController.allQuestions
@@ -23,40 +27,49 @@ struct QuestionView: View {
             if questions.isEmpty {
                 Text("Loading Questions....")
             } else {
-
-//                Spacer()
-                Text(questions.first!.question)
-                let choices = questions.first!.allChoices()
+                
+                //                Spacer()
+                Text(questions[questionIndex].question)
+                let choices = questions[questionIndex].allChoices()
                 ForEach(choices, id: \.self) { choice in
                     Button {
-//                        print(choice, "|",  questions.first!.correctAnswer)
-                        let isCorrect = questions.first!.checkAnswer(chosenAnswer: choice)
+                        //                        print(choice, "|",  questions.first!.correctAnswer)
+                        let isCorrect = questions[questionIndex].checkAnswer(chosenAnswer: choice)
                         
                         if isCorrect {
                             print("You got it right!")
+                            self.gotRight = true
                         } else {
                             print("You got it wrong, sorry")
                         }
+                        showingScore = true
+                        //                        questionIndex += 1
+                        //                        if (questionIndex == questions.count - 1) {
+                        //                            nextRequest()
+                        //                        }
                         
                     } label: {
                         Text(choice)
                     }
-
+                    
                     
                 }
-//                ForEach(questions, id: \.id) { item in
-//                    Text(item.question)
-//                }
                 
             }
             Text("---------------")
             Button {
                 nextRequest()
             } label: {
-                Text("Next Question")
+                Text("Next Set of Questions")
             }
         }
+        
         .onAppear { firstRequest()}
+        .alert(isPresented: $showingScore) {
+            Alert(title: Text(gotRight ? "Right":"Wrong"), message: Text("Your score is score"), dismissButton: .default(Text("Continue")) {
+                self.askQuestion()
+            })
+        }
         
     }
     
@@ -74,6 +87,15 @@ private extension QuestionView {
     
     func nextRequest() {
         self.questionController.fetchResult()
+    }
+    
+    func askQuestion() {
+        if (questionIndex == questions.count - 1) {
+            questionIndex = 0
+            nextRequest()
+        } else {
+            questionIndex += 1
+        }
     }
 }
 
