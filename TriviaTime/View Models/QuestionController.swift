@@ -19,7 +19,7 @@ final class QuestionController: ObservableObject {
     }
     
     func fetchResult() {
-        let filters = ["amount": "10", "type": "multiple"]
+        let filters = ["amount": "10", "type": "multiple", "difficulty": "easy"]
         let filtered = filters.compactMapValues { $0 }
         let queryItems = filtered.map { URLQueryItem(name: $0.key, value: $0.value) }
 //        print(queryItems)

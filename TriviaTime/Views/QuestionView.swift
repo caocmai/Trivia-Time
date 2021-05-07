@@ -14,8 +14,7 @@ struct QuestionView: View {
     @State private var firstTime = true
     @State private var questionIndex = 0
     @State private var showingScore = false
-    @State private var gotRight = false
-    
+    @State private var isCorrect = false
     
     private var questions: [QuestionViewModel] {
         return questionController.allQuestions
@@ -27,34 +26,24 @@ struct QuestionView: View {
             if questions.isEmpty {
                 Text("Loading Questions....")
             } else {
-                
-                //                Spacer()
                 Text(questions[questionIndex].question)
                 let choices = questions[questionIndex].allChoices()
                 ForEach(choices, id: \.self) { choice in
                     Button {
-                        //                        print(choice, "|",  questions.first!.correctAnswer)
-                        let isCorrect = questions[questionIndex].checkAnswer(chosenAnswer: choice)
+                        self.isCorrect = questions[questionIndex].checkAnswer(chosenAnswer: choice)
                         
-                        if isCorrect {
+                        if self.isCorrect {
                             print("You got it right!")
-                            self.gotRight = true
+//                            self.isCorrect = true
                         } else {
                             print("You got it wrong, sorry")
                         }
                         showingScore = true
-                        //                        questionIndex += 1
-                        //                        if (questionIndex == questions.count - 1) {
-                        //                            nextRequest()
-                        //                        }
                         
                     } label: {
                         Text(choice)
                     }
-                    
-                    
                 }
-                
             }
             Text("---------------")
             Button {
@@ -66,7 +55,7 @@ struct QuestionView: View {
         
         .onAppear { firstRequest()}
         .alert(isPresented: $showingScore) {
-            Alert(title: Text(gotRight ? "Right":"Wrong"), message: Text("Your score is score"), dismissButton: .default(Text("Continue")) {
+            Alert(title: Text(self.isCorrect ? "Right":"Wrong"), message: Text(self.isCorrect ? "Nice": "The answer was \(questions[questionIndex].correctAnswer)"), dismissButton: .default(Text("Continue")) {
                 self.askQuestion()
             })
         }
