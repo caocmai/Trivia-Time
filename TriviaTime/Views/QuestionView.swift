@@ -13,8 +13,11 @@ struct QuestionView: View {
     @EnvironmentObject var questionController: QuestionController
     @State private var firstTime = true
     @State private var questionIndex = 0
-    @State private var showingScore = false
+    @State private var showAlert = false
+    @State private var activeAlert: ActiveAlert = .play
     @State private var isCorrect = false
+    @State private var lives = 5
+    @State private var score = 0
     
     private var questions: [QuestionViewModel] {
         return questionController.allQuestions
@@ -29,32 +32,42 @@ struct QuestionView: View {
                 if questions.isEmpty {
                     Text("Loading Questions....")
                 } else {
+                    HStack {
+                        Text("Lives \(lives)")
+                        Text("Score \(score)")
+                    }
                     Text(questions[questionIndex].question)
                         .foregroundColor(.white)
                         .font(.title)
-//                    Spacer()
+                    //                    Spacer()
                     let choices = questions[questionIndex].allChoices()
                     VStack(spacing: 15) {
-                    ForEach(choices, id: \.self) { choice in
-                        Button {
-                            self.isCorrect = questions[questionIndex].checkAnswer(chosenAnswer: choice)
-                            
-                            if self.isCorrect {
-                                print("You got it right!")
-                            } else {
-                                print("You got it wrong, sorry")
+                        ForEach(choices, id: \.self) { choice in
+                            Button {
+                                self.isCorrect = questions[questionIndex].checkAnswer(chosenAnswer: choice)
                                 
+                                if self.isCorrect {
+                                    print("You got it right!")
+                                    score += 300
+                                } else {
+                                    print("You got it wrong, sorry")
+                                    lives -= 1
+                                    if lives == 0 {
+                                        self.activeAlert = .gameover
+                                    } else {
+                                        self.activeAlert = .play
+                                    }
+                                    
+                                }
+                                showAlert = true
+                                
+                            } label: {
+                                Text(choice)
+                                    .foregroundColor(.white)
+                            
                             }
-                            showingScore = true
-                            
-                        } label: {
-                            Text(choice)
-                                .foregroundColor(.white)
-
-                                
                         }
                     }
-                }
                 }
                 Text("---------------")
                 Button {
@@ -65,12 +78,21 @@ struct QuestionView: View {
             }
             
             .onAppear { firstRequest() }
-            .alert(isPresented: $showingScore) {
-                Alert(title: Text(self.isCorrect ? "Right":"Wrong"), message: Text(self.isCorrect ? "Nice": "The answer was \(questions[questionIndex].correctAnswer)"), dismissButton: .default(Text("Continue")) {
-                    self.askQuestion()
-                })
-            }
             
+            .alert(isPresented: $showAlert) {
+                switch activeAlert {
+                case .play:
+                    return Alert(title: Text(self.isCorrect ? "Right":"Wrong"), message: Text(self.isCorrect ? "Nice": "The answer was \(questions[questionIndex].correctAnswer)"), dismissButton: .default(Text("Continue")) {
+                        self.askQuestion()
+                    })
+                    
+                case .gameover:
+                    return  Alert(title: Text("GAME OVER"), message: Text("Your score was \(score)"), dismissButton: .default(Text("PlayAgain")) {
+                        self.askQuestion()
+                        self.lives = 5
+                    })
+                }
+            }
         }
     }
     
@@ -101,3 +123,6 @@ private extension QuestionView {
 }
 
 
+enum ActiveAlert {
+    case play, gameover
+}
