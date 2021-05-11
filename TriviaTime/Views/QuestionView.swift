@@ -22,44 +22,56 @@ struct QuestionView: View {
     
     
     var body: some View {
-        VStack {
-            if questions.isEmpty {
-                Text("Loading Questions....")
-            } else {
-                Text(questions[questionIndex].question)
-                let choices = questions[questionIndex].allChoices()
-                ForEach(choices, id: \.self) { choice in
-                    Button {
-                        self.isCorrect = questions[questionIndex].checkAnswer(chosenAnswer: choice)
-                        
-                        if self.isCorrect {
-                            print("You got it right!")
-//                            self.isCorrect = true
-                        } else {
-                            print("You got it wrong, sorry")
+        ZStack {
+            LinearGradient(gradient: Gradient(colors: [.green, .black]), startPoint: .top, endPoint: .bottom)
+                .edgesIgnoringSafeArea(.all)
+            VStack(spacing: 50) {
+                if questions.isEmpty {
+                    Text("Loading Questions....")
+                } else {
+                    Text(questions[questionIndex].question)
+                        .foregroundColor(.white)
+                        .font(.title)
+//                    Spacer()
+                    let choices = questions[questionIndex].allChoices()
+                    VStack(spacing: 15) {
+                    ForEach(choices, id: \.self) { choice in
+                        Button {
+                            self.isCorrect = questions[questionIndex].checkAnswer(chosenAnswer: choice)
+                            
+                            if self.isCorrect {
+                                print("You got it right!")
+                            } else {
+                                print("You got it wrong, sorry")
+                                
+                            }
+                            showingScore = true
+                            
+                        } label: {
+                            Text(choice)
+                                .foregroundColor(.white)
+
+                                
                         }
-                        showingScore = true
-                        
-                    } label: {
-                        Text(choice)
                     }
                 }
+                }
+                Text("---------------")
+                Button {
+                    nextRequest()
+                } label: {
+                    Text("Next Set of Questions")
+                }
             }
-            Text("---------------")
-            Button {
-                nextRequest()
-            } label: {
-                Text("Next Set of Questions")
+            
+            .onAppear { firstRequest() }
+            .alert(isPresented: $showingScore) {
+                Alert(title: Text(self.isCorrect ? "Right":"Wrong"), message: Text(self.isCorrect ? "Nice": "The answer was \(questions[questionIndex].correctAnswer)"), dismissButton: .default(Text("Continue")) {
+                    self.askQuestion()
+                })
             }
+            
         }
-        
-        .onAppear { firstRequest()}
-        .alert(isPresented: $showingScore) {
-            Alert(title: Text(self.isCorrect ? "Right":"Wrong"), message: Text(self.isCorrect ? "Nice": "The answer was \(questions[questionIndex].correctAnswer)"), dismissButton: .default(Text("Continue")) {
-                self.askQuestion()
-            })
-        }
-        
     }
     
 }
