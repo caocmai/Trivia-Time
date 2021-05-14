@@ -20,13 +20,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Create the SwiftUI view that provides the window contents.
         let questionController = QuestionController()
-        let contentView = TabbarView()
-            .environmentObject(questionController)
+//        let contentView = TabbarView()
+//            .environmentObject(questionController)
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(rootView: contentView)
+            window.rootViewController = UIHostingController(rootView: WelcomeView()
+                                                                .environmentObject(questionController)
+            )
             self.window = window
             window.makeKeyAndVisible()
         }

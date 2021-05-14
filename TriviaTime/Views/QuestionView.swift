@@ -19,26 +19,45 @@ struct QuestionView: View {
     @State private var lives = 5
     @State private var score = 0
     
+    @State private var showScore = false
+    
     private var questions: [QuestionViewModel] {
         return questionController.allQuestions
     }
     
     
     var body: some View {
+        
+        
+        
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [.green, .black]), startPoint: .top, endPoint: .bottom)
+            
+            LinearGradient(gradient: Gradient(colors: [.green, .blue]), startPoint: .top, endPoint: .bottom)
                 .edgesIgnoringSafeArea(.all)
+            
+            
             VStack(spacing: 50) {
+                
                 if questions.isEmpty {
                     Text("Loading Questions....")
                 } else {
                     HStack {
                         Text("Lives \(lives)")
                         Text("Score \(score)")
+                        Spacer()
+                        Button {
+                            print("Image tapped!")
+                            showScore.toggle()
+                            
+                        } label: {
+                            Text("High Scores")
+                        }
                     }
                     Text(questions[questionIndex].question)
                         .foregroundColor(.white)
-                        .font(.title)
+                        .font(.title2)
+                    //                        .multilineTextAlignment(.center)
+                    
                     //                    Spacer()
                     let choices = questions[questionIndex].allChoices()
                     VStack(spacing: 15) {
@@ -64,7 +83,7 @@ struct QuestionView: View {
                             } label: {
                                 Text(choice)
                                     .foregroundColor(.white)
-                            
+                                
                             }
                         }
                     }
@@ -90,8 +109,12 @@ struct QuestionView: View {
                     return  Alert(title: Text("GAME OVER"), message: Text("Your score was \(score)"), dismissButton: .default(Text("PlayAgain")) {
                         self.askQuestion()
                         self.lives = 5
+                        self.score = 0
                     })
                 }
+            }
+            .sheet(isPresented: $showScore) {
+                ScoresView()
             }
         }
     }
