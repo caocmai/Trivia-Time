@@ -25,11 +25,7 @@ struct QuestionView: View {
         return questionController.allQuestions
     }
     
-    
     var body: some View {
-        
-        
-        
         ZStack {
             
             LinearGradient(gradient: Gradient(colors: [.green, .blue]), startPoint: .top, endPoint: .bottom)
@@ -88,12 +84,12 @@ struct QuestionView: View {
                         }
                     }
                 }
-                Text("---------------")
-                Button {
-                    nextRequest()
-                } label: {
-                    Text("Next Set of Questions")
-                }
+                //                Text("---------------")
+                //                Button {
+                //                    nextRequest()
+                //                } label: {
+                //                    Text("Next Set of Questions")
+                //                }
             }
             
             .onAppear { firstRequest() }
@@ -110,6 +106,12 @@ struct QuestionView: View {
                         self.askQuestion()
                         self.lives = 5
                         self.score = 0
+                        
+                        let userDefaults = UserDefaults.standard
+                        var scores = userDefaults.object(forKey: "Scores") as? [Int] ?? []
+                        scores.append(score)
+                        userDefaults.set(scores, forKey: "Scores")
+                        
                     })
                 }
             }
