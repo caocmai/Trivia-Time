@@ -29,17 +29,17 @@ struct QuestionView: View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [.green, .blue]), startPoint: .top, endPoint: .bottom)
                 .edgesIgnoringSafeArea(.all)
+            Spacer()
             VStack(spacing: 60) {
                 Spacer()
                 if questions.isEmpty {
                     Text("Loading Questions....")
                 } else {
                     HStack {
-                        Text("Lives \(lives)")
-                        Text("Score \(score)")
+                        Text("Lives: \(lives)")
+                        Text("Score: \(score)")
                         Spacer()
                         Button {
-                            print("Image tapped!")
                             showScore.toggle()
                         } label: {
                             Text("High Scores")
@@ -77,6 +77,10 @@ struct QuestionView: View {
                                 Text(choice)
                                     .foregroundColor(.white)
                                     .font(.title2)
+                                    .frame(width: 250.0, height: 50.0)
+                                    .background(Color(UIColor.gray))
+                                    .cornerRadius(25)
+
                                 
                             }
                         }

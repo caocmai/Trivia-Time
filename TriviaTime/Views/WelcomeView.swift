@@ -30,7 +30,7 @@ struct WelcomeView: View {
                         .font(.title)
                         .foregroundColor(Color.white)
                         .multilineTextAlignment(.center)
-                        .frame(width: 300.0, height: 50.0)
+                        .frame(width: 250.0, height: 50.0)
                         .background(Color(UIColor.blue))
                         .cornerRadius(25)
                 }
