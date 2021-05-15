@@ -18,28 +18,37 @@ struct ScoresView: View {
     }
     
     var body: some View {
-        Text("Top Scores")
-            .padding()
-        
-        if scores.count > 5 {
-            ForEach(0...4, id: \.self) { i in
-                Text(String(scores[i]))
-            }
-        } else {
-            ForEach(scores, id: \.self) {score in
-                Text(String(score))
+        ZStack{
+            Color.yellow
+            VStack(spacing: 30) {
+                Text("Top Scores")
+                    .padding()
+                    .font(.system(size: 40))
+                
+                if scores.count > 5 {
+                    ForEach(0...4, id: \.self) { i in
+                        Text(String(scores[i]))
+                            .font(.headline)
+                    }
+                } else {
+                    ForEach(scores, id: \.self) {score in
+                        Text(String(score))
+                            .font(.headline)
+                        
+                    }
+                }
+                
+                Button("Close") {
+                    presentationMode.wrappedValue.dismiss()
+                }
+                .font(.title)
+                .foregroundColor(.white)
+                .padding()
+                .frame(width: 250.0, height: 50.0)
+                .background(Color.orange)
+                .cornerRadius(9)
                 
             }
         }
-        
-        Button("Close") {
-            presentationMode.wrappedValue.dismiss()
-        }
-        .font(.title)
-        .foregroundColor(.white)
-        .padding()
-        .background(Color.orange)
-        .cornerRadius(9)
-        
     }
 }
