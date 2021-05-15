@@ -84,12 +84,6 @@ struct QuestionView: View {
                         }
                     }
                 }
-                //                Text("---------------")
-                //                Button {
-                //                    nextRequest()
-                //                } label: {
-                //                    Text("Next Set of Questions")
-                //                }
             }
             
             .onAppear { firstRequest() }
@@ -107,10 +101,8 @@ struct QuestionView: View {
                         var scores = userDefaults.object(forKey: "Scores") as? [Int] ?? []
                         scores.append(score)
                         userDefaults.set(scores, forKey: "Scores")
-                        self.askQuestion()
-                        self.lives = 5
-                        self.score = 0
-                        
+                        self.resetGame()
+           
                     })
                 }
             }
@@ -143,6 +135,13 @@ private extension QuestionView {
         } else {
             questionIndex += 1
         }
+    }
+    
+    func resetGame() {
+        self.lives = 5
+        self.score = 0
+        self.askQuestion()
+        
     }
 }
 

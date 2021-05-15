@@ -33,11 +33,7 @@ struct WelcomeView: View {
                     .background(Color(UIColor.blue))
                     .cornerRadius(25)
             }
-            
         }
-        
-        
-        
     }
 }
 
@@ -60,7 +56,6 @@ extension EnvironmentValues {
         set { self[ViewControllerKey.self].value = newValue }
     }
 }
-
 
 extension UIViewController {
     func present<Content: View>(style: UIModalPresentationStyle = .automatic, @ViewBuilder builder: () -> Content) {
