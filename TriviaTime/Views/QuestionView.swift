@@ -30,6 +30,7 @@ struct QuestionView: View {
             LinearGradient(gradient: Gradient(colors: [.green, .blue]), startPoint: .top, endPoint: .bottom)
                 .edgesIgnoringSafeArea(.all)
             Spacer()
+            ScrollView{
             VStack(spacing: 60) {
                 Spacer()
                 if questions.isEmpty {
@@ -75,10 +76,10 @@ struct QuestionView: View {
                                 
                             } label: {
                                 Text(choice)
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.black)
                                     .font(.title2)
                                     .frame(width: 250.0, height: 50.0)
-                                    .background(Color(UIColor.gray))
+                                    .background(Color(UIColor.yellow))
                                     .cornerRadius(25)
 
                                 
@@ -112,6 +113,7 @@ struct QuestionView: View {
             .sheet(isPresented: $showScore) {
                 ScoresView()
             }
+        }
         }
     }
     
