@@ -14,11 +14,10 @@ struct WelcomeView: View {
     
     var body: some View {
         VStack(spacing: 10) {
-            
+            Spacer()
             Text("TRIVIA TIME")
                 .font(.headline)
-            
-            
+            Spacer()
             Button {
                 self.viewControllerHolder?.present(style: .fullScreen) {
                     QuestionView()
@@ -33,6 +32,7 @@ struct WelcomeView: View {
                     .background(Color(UIColor.blue))
                     .cornerRadius(25)
             }
+        Spacer()
         }
     }
 }

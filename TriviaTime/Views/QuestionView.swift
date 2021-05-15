@@ -32,8 +32,8 @@ struct QuestionView: View {
                 .edgesIgnoringSafeArea(.all)
             
             
-            VStack(spacing: 50) {
-                
+            VStack(spacing: 80) {
+                Spacer()
                 if questions.isEmpty {
                     Text("Loading Questions....")
                 } else {
@@ -49,6 +49,7 @@ struct QuestionView: View {
                             Text("High Scores")
                         }
                     }
+//                    Spacer()
                     Text(questions[questionIndex].question)
                         .foregroundColor(.white)
                         .font(.title2)
@@ -84,6 +85,7 @@ struct QuestionView: View {
                         }
                     }
                 }
+                Spacer()
             }
             
             .onAppear { firstRequest() }
@@ -96,7 +98,7 @@ struct QuestionView: View {
                     })
                     
                 case .gameover:
-                    return  Alert(title: Text("GAME OVER"), message: Text("Your score was \(score)"), dismissButton: .default(Text("PlayAgain")) {
+                    return  Alert(title: Text("GAME OVER").foregroundColor(.red), message: Text("Your score was \(score)"), dismissButton: .default(Text("PlayAgain")) {
                         let userDefaults = UserDefaults.standard
                         var scores = userDefaults.object(forKey: "Scores") as? [Int] ?? []
                         scores.append(score)

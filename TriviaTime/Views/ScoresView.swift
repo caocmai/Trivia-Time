@@ -18,11 +18,11 @@ struct ScoresView: View {
     }
     
     var body: some View {
-        Text("Scores")
+        Text("Top Scores")
             .padding()
         
         if scores.count > 5 {
-            ForEach(0...5, id: \.self) { i in
+            ForEach(0...4, id: \.self) { i in
                 Text(String(scores[i]))
             }
         } else {
@@ -40,7 +40,6 @@ struct ScoresView: View {
         .padding()
         .background(Color.orange)
         .cornerRadius(9)
-        
         
     }
 }
