@@ -27,12 +27,9 @@ struct QuestionView: View {
     
     var body: some View {
         ZStack {
-            
             LinearGradient(gradient: Gradient(colors: [.green, .blue]), startPoint: .top, endPoint: .bottom)
                 .edgesIgnoringSafeArea(.all)
-            
-            
-            VStack(spacing: 80) {
+            VStack(spacing: 60) {
                 Spacer()
                 if questions.isEmpty {
                     Text("Loading Questions....")
@@ -44,7 +41,6 @@ struct QuestionView: View {
                         Button {
                             print("Image tapped!")
                             showScore.toggle()
-                            
                         } label: {
                             Text("High Scores")
                         }
@@ -53,7 +49,7 @@ struct QuestionView: View {
                     Text(questions[questionIndex].question)
                         .fixedSize(horizontal: false, vertical: true)
                         .foregroundColor(.white)
-                        .font(.title2)
+                        .font(.title)
                         .padding()
                     
                     let choices = questions[questionIndex].allChoices()
@@ -80,6 +76,7 @@ struct QuestionView: View {
                             } label: {
                                 Text(choice)
                                     .foregroundColor(.white)
+                                    .font(.title2)
                                 
                             }
                         }
@@ -98,7 +95,7 @@ struct QuestionView: View {
                     })
                     
                 case .gameover:
-                    return  Alert(title: Text("GAME OVER").foregroundColor(.red), message: Text("Your score was \(score)"), dismissButton: .default(Text("PlayAgain")) {
+                    return  Alert(title: Text("GAME OVER").foregroundColor(.red), message: Text("Your score was \(score)"), dismissButton: .default(Text("Play Again")) {
                         let userDefaults = UserDefaults.standard
                         var scores = userDefaults.object(forKey: "Scores") as? [Int] ?? []
                         scores.append(score)
@@ -143,7 +140,6 @@ private extension QuestionView {
         self.lives = 5
         self.score = 0
         self.askQuestion()
-        
     }
 }
 

@@ -15,7 +15,6 @@ struct QuestionViewModel: Identifiable, Codable {
     var question: String = ""
     var correctAnswer: String
     var incorrectAnswers: [String]
-//    var choices: [String]
     
     init(questionResponse: QuestionResponse) {
         self.id = questionResponse.question
@@ -57,7 +56,6 @@ struct QuestionViewModel: Identifiable, Codable {
         choices = self.incorrectAnswers
         let randomIdx = Int.random(in: 0...choices.count)
         choices.insert(self.correctAnswer, at: randomIdx)
-//        replaceSpecialChars(sentence: "jslkjew")
         
 //        for index in choices.indices {
 //            choices[index] = replaceSpecialChars(sentence: choices[index])

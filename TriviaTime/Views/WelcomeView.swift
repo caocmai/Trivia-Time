@@ -13,26 +13,29 @@ struct WelcomeView: View {
     @Environment(\.viewController) private var viewControllerHolder: UIViewController?
     
     var body: some View {
-        VStack(spacing: 10) {
-            Spacer()
-            Text("TRIVIA TIME")
-                .font(.headline)
-            Spacer()
-            Button {
-                self.viewControllerHolder?.present(style: .fullScreen) {
-                    QuestionView()
-                        .environmentObject(questionController)
+        ZStack{
+            Color.yellow
+            VStack(spacing: 10) {
+                Spacer()
+                Text("TRIVIA TIME")
+                    .font(.system(size: 80))
+                Spacer()
+                Button {
+                    self.viewControllerHolder?.present(style: .fullScreen) {
+                        QuestionView()
+                            .environmentObject(questionController)
+                    }
+                } label: {
+                    Text("PLAY")
+                        .font(.title)
+                        .foregroundColor(Color.white)
+                        .multilineTextAlignment(.center)
+                        .frame(width: 300.0, height: 50.0)
+                        .background(Color(UIColor.blue))
+                        .cornerRadius(25)
                 }
-            } label: {
-                Text("PLAY")
-                    .font(.title)
-                    .foregroundColor(Color.white)
-                    .multilineTextAlignment(.center)
-                    .frame(width: 300.0, height: 50.0)
-                    .background(Color(UIColor.blue))
-                    .cornerRadius(25)
+                Spacer()
             }
-        Spacer()
         }
     }
 }
