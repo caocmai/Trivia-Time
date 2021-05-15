@@ -1,8 +1,10 @@
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
+
 # Trivia Time
 A trivia iOS app written in SwiftUI
 
 ## Description
-This trivia game grabs questions from the [opentdb](https://opentdb.com) API. The player can get up to 5 questions wrong before the game ends. 
+This trivia game features questions from the [opentdb](https://opentdb.com) API. The player can get up to 5 questions wrong before the game ends. 
 
 ### Features
 * High Scores Persistance
