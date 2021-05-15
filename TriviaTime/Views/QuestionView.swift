@@ -48,14 +48,14 @@ struct QuestionView: View {
                         } label: {
                             Text("High Scores")
                         }
-                    }
+                    }.padding()
 //                    Spacer()
                     Text(questions[questionIndex].question)
+                        .fixedSize(horizontal: false, vertical: true)
                         .foregroundColor(.white)
                         .font(.title2)
-                    //                        .multilineTextAlignment(.center)
+                        .padding()
                     
-                    //                    Spacer()
                     let choices = questions[questionIndex].allChoices()
                     VStack(spacing: 15) {
                         ForEach(choices, id: \.self) { choice in
