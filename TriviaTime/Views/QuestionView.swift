@@ -103,14 +103,13 @@ struct QuestionView: View {
                     
                 case .gameover:
                     return  Alert(title: Text("GAME OVER"), message: Text("Your score was \(score)"), dismissButton: .default(Text("PlayAgain")) {
-                        self.askQuestion()
-                        self.lives = 5
-                        self.score = 0
-                        
                         let userDefaults = UserDefaults.standard
                         var scores = userDefaults.object(forKey: "Scores") as? [Int] ?? []
                         scores.append(score)
                         userDefaults.set(scores, forKey: "Scores")
+                        self.askQuestion()
+                        self.lives = 5
+                        self.score = 0
                         
                     })
                 }
