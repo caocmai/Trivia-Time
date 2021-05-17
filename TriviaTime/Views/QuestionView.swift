@@ -44,8 +44,6 @@ struct QuestionView: View {
                                 Text("High Scores")
                             }
                         }.padding()
-                        
-                       
                         //                    Spacer()
                         Text(questions[questionIndex].question)
                             .fixedSize(horizontal: false, vertical: true)
