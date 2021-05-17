@@ -12,9 +12,7 @@ This trivia game features questions from the [opentdb](https://opentdb.com) API.
 * SwiftUI Views
 
 ### App Screenshots
-<img src = "Screenshots/TriviaTime.png" width = "270" />
-<img src = "Screenshots/TriviaTime2.png" width = "270" />
-<img src = "Screenshots/TriviaTime3.png" width = "270" />
+<img src = "Screenshots/TriviaTime.png" width = "260" /> <img src = "Screenshots/TriviaTime2.png" width = "260" /> <img src = "Screenshots/TriviaTime3.png" width = "260" />
 
 ### Usage
 Tap the Play button to start playing by answering as many questions as you can to get the highest points as you can.
