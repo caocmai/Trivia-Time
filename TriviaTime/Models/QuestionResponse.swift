@@ -11,9 +11,7 @@ struct QuestionsResponse: Codable {
     let results: [QuestionResponse]
 }
 
-struct QuestionResponse: Codable {
-//    let id: ObjectIdentifier
-    
+struct QuestionResponse: Codable {    
     let category: String
     let difficulty: String
     let question: String

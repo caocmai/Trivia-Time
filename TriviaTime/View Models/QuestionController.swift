@@ -20,13 +20,10 @@ final class QuestionController: ObservableObject {
     
     func fetchResult() {
         let filters = ["amount": "10", "type": "multiple", "difficulty": "easy"]
-        let filtered = filters.compactMapValues { $0 }
+        let filtered = filters.compactMapValues { $0 } // removes nil pairs
         let queryItems = filtered.map { URLQueryItem(name: $0.key, value: $0.value) }
-//        print(queryItems)
-    
         let endPoint2 = EndPoint.questions(queryItems: queryItems)
         
-//        apiService.fetchTEST(at: endPoint2)
         apiService.fetch(at: endPoint2) { [weak self ] (result: Result<QuestionsResponse, Error>) in
             switch result {
             case .failure(let error):

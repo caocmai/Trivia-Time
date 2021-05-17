@@ -14,7 +14,7 @@ struct ScoresView: View {
     let userDefaults = UserDefaults.standard
     
     var scores: [Int] {
-        return Array(Set(userDefaults.object(forKey: "Scores") as? [Int] ?? [])).sorted().reversed()
+        return Array(Set(userDefaults.object(forKey: "Scores") as? [Int] ?? [])).sorted().reversed() // remove duplicates and sort in descending order
     }
     
     var body: some View {

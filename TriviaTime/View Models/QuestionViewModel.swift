@@ -32,7 +32,7 @@ struct QuestionViewModel: Identifiable, Codable {
         return false
     }
     
-//   https://stackoverflow.com/questions/25607247/how-do-i-decode-html-entities-in-swift
+//  To convert special HTML chars to normal text https://stackoverflow.com/questions/25607247/how-do-i-decode-html-entities-in-swift
     func replaceSpecialChars(sentence: String) -> String {
         guard let data = sentence.data(using: .utf8) else {
             return sentence
